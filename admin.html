@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body { margin:0; font-family:Arial, sans-serif; }
+
+    /* Top Bar */
+    .topbar {
+      display:flex; align-items:center; justify-content:flex-start;
+      background:#f9e79f; padding:10px 20px;
+    }
+    .logo { font-weight:bold; font-size:18px; }
+
+    /* Item Grid */
+    .item-grid { padding:20px; }
+    .row { display:flex; flex-wrap:wrap; gap:20px; margin-bottom:20px; }
+    .item-card {
+      width:200px; border:1px solid #ccc; border-radius:10px;
+      padding:15px; text-align:center; background:#fff;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:transform 0.2s;
+    }
+    .item-card:hover { transform:scale(1.05); }
+    .item-card img { width:100%; height:120px; object-fit:cover; border-radius:6px; margin-bottom:10px; }
+    .item-card h4 { margin:8px 0 4px; font-size:16px; color:#333; }
+    .item-card p { margin:4px 0; font-size:13px; color:#555; }
+
+    /* Admin Controls Container */
+    .controls-container {
+      border:2px solid #ccc; border-radius:10px; padding:20px;
+      margin-top:20px; background:#fdfdfd; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      max-width:500px;
+    }
+    .controls-container h3 { margin:0 0 15px; font-size:18px; text-align:center; }
+    .controls-container input, .controls-container select {
+      display:block; width:95%; padding:8px; margin:8px auto;
+      border:1px solid #ccc; border-radius:6px;
+    }
+    .controls-container button {
+      padding:8px 14px; margin:8px 5px; border:none; border-radius:6px;
+      background:#1abc9c; color:#fff; cursor:pointer; transition:background 0.2s;
+    }
+    .controls-container button:hover { background:#16a085; }
+    .remove-btn { background:#e74c3c; }
+    .remove-btn:hover { background:#c0392b; }
+
+    /* Footer */
+    .site-footer {
+      position: fixed; bottom: 0; left: 0; width: 100%;
+      background-color: #333; color: #fff; text-align: center;
+      padding: 12px 0; font-size: 14px; box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+    }
+    .site-footer p { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Admin Panel</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="item-grid">
+    <div id="grid" class="row"></div>
+
+    <!-- Admin Controls always visible -->
+    <div class="controls-container" id="adminControls">
+      <h3>Controls</h3>
+      <input type="text" id="itemName" placeholder="Enter name">
+      <input type="text" id="itemImage" placeholder="Enter image URL">
+      <input type="number" id="itemPrice" placeholder="Enter price">
+      <input type="number" id="itemQty" placeholder="Enter quantity">
+      <select id="itemType">
+        <option value="">Select type</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Food">Food</option>
+        <option value="Accessories">Accessories</option>
+      </select>
+      <button onclick="addItem()">Add</button>
+      <button class="remove-btn" onclick="removeItem()">Remove Last</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2006 Your Company Name</p>
+    <p>Find us at: Facebook | Twitter | Instagram | Email</p>
+  </footer>
+
+  <script>
+    // Add/remove items dynamically
+    function addItem() {
+      const name = document.getElementById("itemName").value;
+      const url = document.getElementById("itemImage").value;
+      const price = document.getElementById("itemPrice").value;
+      const qty = document.getElementById("itemQty").value;
+      const type = document.getElementById("itemType").value;
+
+      if (name && url && price && qty && type) {
+        const card = document.createElement("div");
+        card.className = "item-card";
+        card.innerHTML = `
+          <img src="${url}" alt="${name}">
+          <h4>${name}</h4>
+          <p>Type: ${type}</p>
+          <p>Price: ₱${price}</p>
+          <p>Quantity: ${qty}</p>
+        `;
+        document.getElementById("grid").appendChild(card);
+
+        // Clear inputs
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemImage").value = "";
+        document.getElementById("itemPrice").value = "";
+        document.getElementById("itemQty").value = "";
+        document.getElementById("itemType").value = "";
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+
+    function removeItem() {
+      const grid = document.getElementById("grid");
+      if (grid.lastChild) {
+        grid.removeChild(grid.lastChild);
+      } else {
+        alert("No items to remove.");
+      }
+    }
+  </script>
+</body>
+</html>
