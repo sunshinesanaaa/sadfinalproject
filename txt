@@ -1,2 +1,0 @@
-git commit -am "Your commit message"
-git push
