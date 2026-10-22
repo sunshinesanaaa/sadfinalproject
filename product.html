@@ -6,71 +6,8 @@
 <title>Golden Glow Repair Serum — Golden Glow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<style>
-  .crumb { font-size: 13px; color: var(--text-soft); margin: 26px 0 20px; }
-  .crumb a { color: var(--text-soft); text-decoration: none; }
-  .crumb a:hover { color: var(--navy); }
-
-  .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding-bottom: 60px; }
-
-  .gallery-main {
-    background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
-    border-radius: var(--radius-m);
-    aspect-ratio: 1 / 1;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .gallery-main svg { width: 34%; height: 34%; }
-  .gallery-thumbs { display: flex; gap: 12px; margin-top: 14px; }
-  .gallery-thumbs div {
-    width: 68px; height: 68px; border-radius: var(--radius-s);
-    background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
-    border: 2px solid transparent; display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-  }
-  .gallery-thumbs div.active { border-color: var(--gold); }
-  .gallery-thumbs svg { width: 55%; height: 55%; }
-
-  .p-cat { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-soft); }
-  .p-title { font-size: 30px; margin: 8px 0 12px; }
-  .p-rating { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--text-soft); margin-bottom: 18px; }
-  .p-rating .stars { color: var(--gold); letter-spacing: 2px; }
-  .p-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
-  .p-price { font-family: var(--serif); font-size: 28px; color: var(--navy); font-weight: 600; }
-  .p-price-was { color: var(--text-soft); text-decoration: line-through; font-size: 16px; }
-  .p-desc { font-size: 14.5px; line-height: 1.7; color: var(--text); margin-bottom: 26px; max-width: 48ch; }
-
-  .qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  .qty-stepper { display: flex; align-items: center; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; }
-  .qty-stepper button { width: 38px; height: 42px; border: none; background: var(--paper); font-size: 16px; cursor: pointer; color: var(--navy); }
-  .qty-stepper button:hover { background: var(--gold-tint); }
-  .qty-stepper span { width: 36px; text-align: center; font-weight: 600; font-size: 14px; }
-  .stock-note { font-size: 13px; color: #4E7D57; display: flex; align-items: center; gap: 6px; }
-  .stock-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4E7D57; }
-
-  .p-actions { display: flex; gap: 12px; margin-bottom: 30px; }
-  .p-actions .btn { flex: 1; }
-
-  .accordion { border-top: 1px solid var(--line); }
-  .accordion-item { border-bottom: 1px solid var(--line); }
-  .accordion-item summary {
-    padding: 16px 2px; cursor: pointer; font-weight: 600; font-size: 14.5px; color: var(--navy);
-    display: flex; justify-content: space-between; align-items: center; list-style: none;
-  }
-  .accordion-item summary::-webkit-details-marker { display: none; }
-  .accordion-item summary::after { content: "+"; font-size: 18px; color: var(--gold); font-weight: 400; }
-  .accordion-item[open] summary::after { content: "–"; }
-  .accordion-item p { padding: 0 2px 18px; margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--text-soft); max-width: 52ch; }
-
-  .related { padding: 20px 0 70px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-
-  @media (max-width: 900px) {
-    .product-layout { grid-template-columns: 1fr; gap: 30px; }
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="product.css">
 </head>
 <body>
 
@@ -108,7 +45,7 @@
   <div class="product-layout">
     <div>
       <div class="gallery-main">
-        <span class="badge badge-blush" style="position:absolute;top:16px;left:16px;">New</span>
+        <span class="badge badge-blush gallery-badge">New</span>
         <svg viewBox="0 0 100 100"><rect class="pline" x="36" y="46" width="28" height="40" rx="6"/><rect class="pline" x="42" y="30" width="16" height="18"/><path class="pline" d="M50 10 L50 30"/><ellipse class="pcap" cx="50" cy="9" rx="6" ry="6"/></svg>
       </div>
       <div class="gallery-thumbs">
@@ -170,7 +107,7 @@
 
     <a href="product.html" class="product-card">
       <div class="product-thumb">
-        <span class="badge badge-gold" style="position:absolute;top:12px;left:12px;">Bestseller</span>
+        <span class="badge badge-gold">Bestseller</span>
         <svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg>
       </div>
       <div class="product-body">
@@ -239,7 +176,7 @@
     </div>
     <div>
       <h5>Stay in the glow</h5>
-      <p style="margin:0 0 12px; font-size:13.5px;">Skin tips and early access to new drops, once or twice a month.</p>
+      <p class="newsletter-copy">Skin tips and early access to new drops, once or twice a month.</p>
       <div class="footer-newsletter">
         <input type="email" placeholder="you@email.com">
         <button type="button">Join</button>
