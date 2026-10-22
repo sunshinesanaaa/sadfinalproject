@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /SalevisionFINAL/
+RewriteRule ^index\.html$ index.php [R=302,L]
+RewriteRule ^shop\.html$ shop.php [R=302,L]
+RewriteRule ^product\.html$ product.php [R=302,L]
+RewriteRule ^cart\.html$ cart.php [R=302,L]
+RewriteRule ^checkout\.html$ checkout.php [R=302,L]
+RewriteRule ^login\.html$ login.php [R=302,L]
+RewriteRule ^admin\.html$ admin.php [R=302,L]
