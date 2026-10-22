@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Glow Repair Serum — Golden Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .crumb { font-size: 13px; color: var(--text-soft); margin: 26px 0 20px; }
+  .crumb a { color: var(--text-soft); text-decoration: none; }
+  .crumb a:hover { color: var(--navy); }
+
+  .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding-bottom: 60px; }
+
+  .gallery-main {
+    background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
+    border-radius: var(--radius-m);
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .gallery-main svg { width: 34%; height: 34%; }
+  .gallery-thumbs { display: flex; gap: 12px; margin-top: 14px; }
+  .gallery-thumbs div {
+    width: 68px; height: 68px; border-radius: var(--radius-s);
+    background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
+    border: 2px solid transparent; display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .gallery-thumbs div.active { border-color: var(--gold); }
+  .gallery-thumbs svg { width: 55%; height: 55%; }
+
+  .p-cat { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-soft); }
+  .p-title { font-size: 30px; margin: 8px 0 12px; }
+  .p-rating { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--text-soft); margin-bottom: 18px; }
+  .p-rating .stars { color: var(--gold); letter-spacing: 2px; }
+  .p-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+  .p-price { font-family: var(--serif); font-size: 28px; color: var(--navy); font-weight: 600; }
+  .p-price-was { color: var(--text-soft); text-decoration: line-through; font-size: 16px; }
+  .p-desc { font-size: 14.5px; line-height: 1.7; color: var(--text); margin-bottom: 26px; max-width: 48ch; }
+
+  .qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .qty-stepper { display: flex; align-items: center; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; }
+  .qty-stepper button { width: 38px; height: 42px; border: none; background: var(--paper); font-size: 16px; cursor: pointer; color: var(--navy); }
+  .qty-stepper button:hover { background: var(--gold-tint); }
+  .qty-stepper span { width: 36px; text-align: center; font-weight: 600; font-size: 14px; }
+  .stock-note { font-size: 13px; color: #4E7D57; display: flex; align-items: center; gap: 6px; }
+  .stock-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4E7D57; }
+
+  .p-actions { display: flex; gap: 12px; margin-bottom: 30px; }
+  .p-actions .btn { flex: 1; }
+
+  .accordion { border-top: 1px solid var(--line); }
+  .accordion-item { border-bottom: 1px solid var(--line); }
+  .accordion-item summary {
+    padding: 16px 2px; cursor: pointer; font-weight: 600; font-size: 14.5px; color: var(--navy);
+    display: flex; justify-content: space-between; align-items: center; list-style: none;
+  }
+  .accordion-item summary::-webkit-details-marker { display: none; }
+  .accordion-item summary::after { content: "+"; font-size: 18px; color: var(--gold); font-weight: 400; }
+  .accordion-item[open] summary::after { content: "–"; }
+  .accordion-item p { padding: 0 2px 18px; margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--text-soft); max-width: 52ch; }
+
+  .related { padding: 20px 0 70px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+
+  @media (max-width: 900px) {
+    .product-layout { grid-template-columns: 1fr; gap: 30px; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/gglogo.png" alt="Golden Glow">
+      <span class="brand-word">Golden <b>Glow</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="current">Shop</a>
+      <a href="index.html#story">Our Story</a>
+      <a href="index.html#story">Contact</a>
+    </nav>
+    <div class="top-actions">
+      <div class="top-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search products">
+      </div>
+      <a href="login.html" class="icon-link" title="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+      <a href="cart.html" class="icon-link" title="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count">3</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / Golden Glow Repair Serum</div>
+
+  <div class="product-layout">
+    <div>
+      <div class="gallery-main">
+        <span class="badge badge-blush" style="position:absolute;top:16px;left:16px;">New</span>
+        <svg viewBox="0 0 100 100"><rect class="pline" x="36" y="46" width="28" height="40" rx="6"/><rect class="pline" x="42" y="30" width="16" height="18"/><path class="pline" d="M50 10 L50 30"/><ellipse class="pcap" cx="50" cy="9" rx="6" ry="6"/></svg>
+      </div>
+      <div class="gallery-thumbs">
+        <div class="active"><svg viewBox="0 0 100 100"><rect class="pline" x="36" y="46" width="28" height="40" rx="6"/><rect class="pline" x="42" y="30" width="16" height="18"/><path class="pline" d="M50 10 L50 30"/><ellipse class="pcap" cx="50" cy="9" rx="6" ry="6"/></svg></div>
+        <div><svg viewBox="0 0 100 100"><rect class="pline" x="28" y="38" width="44" height="42" rx="6"/><rect class="pline" x="24" y="28" width="52" height="14" rx="4"/></svg></div>
+        <div><svg viewBox="0 0 100 100"><path class="pline" d="M38 20 h24 l4 10 v50 a14 14 0 0 1 -32 0 v-50 z"/><rect class="pcap" x="40" y="14" width="20" height="8" rx="2"/></svg></div>
+      </div>
+    </div>
+
+    <div>
+      <span class="p-cat">Serum</span>
+      <h1 class="p-title">Golden Glow Repair Serum</h1>
+      <div class="p-rating"><span class="stars">★★★★★</span> 4.8 (212 reviews)</div>
+
+      <div class="p-price-row">
+        <span class="p-price">₱899</span>
+      </div>
+
+      <p class="p-desc">A lightweight, fast-absorbing serum with niacinamide and licorice root extract, formulated to even out visible dark spots and calm redness. Fragrance-free, safe for daily morning and evening use.</p>
+
+      <div class="qty-row">
+        <div class="qty-stepper">
+          <button type="button" aria-label="Decrease quantity">–</button>
+          <span>1</span>
+          <button type="button" aria-label="Increase quantity">+</button>
+        </div>
+        <span class="stock-note">In stock, ships in 2–3 days</span>
+      </div>
+
+      <div class="p-actions">
+        <a href="cart.html" class="btn btn-gold">Add to cart</a>
+        <button class="btn btn-ghost" type="button">Save for later</button>
+      </div>
+
+      <div class="accordion">
+        <details class="accordion-item" open>
+          <summary>Key ingredients</summary>
+          <p>Niacinamide 5%, licorice root extract, panthenol, hyaluronic acid. Alcohol-free and dermatologist-tested.</p>
+        </details>
+        <details class="accordion-item">
+          <summary>How to use</summary>
+          <p>Apply 3–4 drops to clean, dry skin after toning. Follow with moisturizer and sunscreen in the morning. Use both AM and PM.</p>
+        </details>
+        <details class="accordion-item">
+          <summary>Shipping &amp; returns</summary>
+          <p>Metro Manila orders arrive in 2–3 business days, provincial orders in 4–7 days. Unopened items can be returned within 14 days.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap related">
+  <div class="section-head">
+    <h2>Pairs well with</h2>
+    <a href="shop.html" class="see-all">See full collection</a>
+  </div>
+  <div class="grid-4">
+
+    <a href="product.html" class="product-card">
+      <div class="product-thumb">
+        <span class="badge badge-gold" style="position:absolute;top:12px;left:12px;">Bestseller</span>
+        <svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg>
+      </div>
+      <div class="product-body">
+        <span class="product-cat">Cleanser</span>
+        <span class="product-name">Radiance Cleansing Foam</span>
+        <div class="product-row"><span class="product-price">₱349</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+      </div>
+    </a>
+
+    <a href="product.html" class="product-card">
+      <div class="product-thumb">
+        <svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg>
+      </div>
+      <div class="product-body">
+        <span class="product-cat">Toner</span>
+        <span class="product-name">Brightening Facial Toner</span>
+        <div class="product-row"><span class="product-price">₱399</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+      </div>
+    </a>
+
+    <a href="product.html" class="product-card">
+      <div class="product-thumb">
+        <svg viewBox="0 0 100 100"><rect class="pline" x="28" y="38" width="44" height="42" rx="6"/><rect class="pline" x="24" y="28" width="52" height="14" rx="4"/></svg>
+      </div>
+      <div class="product-body">
+        <span class="product-cat">Cream</span>
+        <span class="product-name">Overnight Repair Cream</span>
+        <div class="product-row"><span class="product-price"><span class="was">₱749</span>₱649</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+      </div>
+    </a>
+
+    <a href="product.html" class="product-card">
+      <div class="product-thumb">
+        <svg viewBox="0 0 100 100"><path class="pline" d="M38 20 h24 l4 10 v50 a14 14 0 0 1 -32 0 v-50 z"/><rect class="pcap" x="40" y="14" width="20" height="8" rx="2"/></svg>
+      </div>
+      <div class="product-body">
+        <span class="product-cat">Lotion</span>
+        <span class="product-name">Even-Tone Day Lotion</span>
+        <div class="product-row"><span class="product-price">₱459</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">
+        <img src="assets/gglogo.png" alt="Golden Glow">
+        <span class="brand-word">Golden <b>Glow</b></span>
+      </a>
+      <p>Brightening skincare formulated for tropical climates. Made in the Philippines.</p>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <a href="shop.html">All products</a>
+      <a href="shop.html">Bestsellers</a>
+      <a href="shop.html">New arrivals</a>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <a href="login.html">My account</a>
+      <a href="cart.html">Cart</a>
+      <a href="index.html#story">Shipping &amp; returns</a>
+    </div>
+    <div>
+      <h5>Stay in the glow</h5>
+      <p style="margin:0 0 12px; font-size:13.5px;">Skin tips and early access to new drops, once or twice a month.</p>
+      <div class="footer-newsletter">
+        <input type="email" placeholder="you@email.com">
+        <button type="button">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Golden Glow. Student project mockup.</span>
+    <span>Facebook · Instagram · Email</span>
+  </div>
+</footer>
+
+</body>
+</html>

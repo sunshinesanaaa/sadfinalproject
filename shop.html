@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All — Golden Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .page-head { background: var(--gold-tint); padding: 40px 0 34px; }
+  .crumb { font-size: 13px; color: var(--text-soft); margin-bottom: 10px; }
+  .crumb a { color: var(--text-soft); text-decoration: none; }
+  .crumb a:hover { color: var(--navy); }
+  .page-head h1 { font-size: 34px; }
+
+  .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 44px; padding: 46px 0 30px; }
+
+  .filter-group { margin-bottom: 30px; }
+  .filter-group h4 { font-family: var(--sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); margin-bottom: 14px; font-weight: 700; }
+  .filter-option { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--text); margin-bottom: 11px; cursor: pointer; }
+  .filter-option input { accent-color: var(--gold); width: 15px; height: 15px; }
+  .filter-option span.count { margin-left: auto; color: var(--text-soft); font-size: 12.5px; }
+
+  .price-range { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-soft); }
+  .price-range input[type="range"] { flex: 1; accent-color: var(--gold); }
+
+  .shop-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .result-count { font-size: 13.5px; color: var(--text-soft); }
+  .sort-select { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 8px 12px; font-size: 13.5px; color: var(--text); background: var(--paper); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+  .apply-btn { margin-top: 6px; }
+
+  @media (max-width: 900px) {
+    .shop-layout { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/gglogo.png" alt="Golden Glow">
+      <span class="brand-word">Golden <b>Glow</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="current">Shop</a>
+      <a href="index.html#story">Our Story</a>
+      <a href="index.html#story">Contact</a>
+    </nav>
+    <div class="top-actions">
+      <div class="top-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search products">
+      </div>
+      <a href="login.html" class="icon-link" title="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+      <a href="cart.html" class="icon-link" title="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count">3</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="page-head">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> / Shop</div>
+    <h1>Shop all products</h1>
+  </div>
+</div>
+
+<div class="wrap shop-layout">
+
+  <aside>
+    <div class="filter-group">
+      <h4>Category</h4>
+      <label class="filter-option"><input type="checkbox" checked> Cleansers <span class="count">4</span></label>
+      <label class="filter-option"><input type="checkbox" checked> Toners <span class="count">3</span></label>
+      <label class="filter-option"><input type="checkbox"> Serums <span class="count">5</span></label>
+      <label class="filter-option"><input type="checkbox"> Lotions <span class="count">6</span></label>
+      <label class="filter-option"><input type="checkbox"> Creams <span class="count">3</span></label>
+      <label class="filter-option"><input type="checkbox"> Bar soaps <span class="count">2</span></label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Skin concern</h4>
+      <label class="filter-option"><input type="checkbox"> Brightening</label>
+      <label class="filter-option"><input type="checkbox"> Hydration</label>
+      <label class="filter-option"><input type="checkbox"> Oil control</label>
+      <label class="filter-option"><input type="checkbox"> Sensitive skin</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Price</h4>
+      <div class="price-range">
+        <span>₱0</span>
+        <input type="range" min="0" max="1000" value="650">
+        <span>₱1000</span>
+      </div>
+    </div>
+
+    <button class="btn btn-navy btn-block apply-btn" type="button">Apply filters</button>
+  </aside>
+
+  <div>
+    <div class="shop-toolbar">
+      <span class="result-count">Showing 6 of 23 products</span>
+      <select class="sort-select">
+        <option>Sort: Featured</option>
+        <option>Price: low to high</option>
+        <option>Price: high to low</option>
+        <option>Newest</option>
+      </select>
+    </div>
+
+    <div class="grid-3">
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <span class="badge badge-gold" style="position:absolute;top:12px;left:12px;">Bestseller</span>
+          <svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Cleanser</span>
+          <span class="product-name">Radiance Cleansing Foam</span>
+          <div class="product-row"><span class="product-price">₱349</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Toner</span>
+          <span class="product-name">Brightening Facial Toner</span>
+          <div class="product-row"><span class="product-price">₱399</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <span class="badge badge-blush" style="position:absolute;top:12px;left:12px;">New</span>
+          <svg viewBox="0 0 100 100"><rect class="pline" x="36" y="46" width="28" height="40" rx="6"/><rect class="pline" x="42" y="30" width="16" height="18"/><path class="pline" d="M50 10 L50 30"/><ellipse class="pcap" cx="50" cy="9" rx="6" ry="6"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Serum</span>
+          <span class="product-name">Golden Glow Repair Serum</span>
+          <div class="product-row"><span class="product-price">₱899</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <svg viewBox="0 0 100 100"><path class="pline" d="M38 20 h24 l4 10 v50 a14 14 0 0 1 -32 0 v-50 z"/><rect class="pcap" x="40" y="14" width="20" height="8" rx="2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Lotion</span>
+          <span class="product-name">Even-Tone Day Lotion</span>
+          <div class="product-row"><span class="product-price">₱459</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <svg viewBox="0 0 100 100"><rect class="pline" x="28" y="38" width="44" height="42" rx="6"/><rect class="pline" x="24" y="28" width="52" height="14" rx="4"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Cream</span>
+          <span class="product-name">Overnight Repair Cream</span>
+          <div class="product-row"><span class="product-price"><span class="was">₱749</span>₱649</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-thumb">
+          <svg viewBox="0 0 100 100"><rect class="pline" x="20" y="40" width="60" height="30" rx="12"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Bar soap</span>
+          <span class="product-name">Gentle Exfoliating Bar</span>
+          <div class="product-row"><span class="product-price">₱279</span><button class="add-line" type="button" aria-label="Add to cart">+</button></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">
+        <img src="assets/gglogo.png" alt="Golden Glow">
+        <span class="brand-word">Golden <b>Glow</b></span>
+      </a>
+      <p>Brightening skincare formulated for tropical climates. Made in the Philippines.</p>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <a href="shop.html">All products</a>
+      <a href="shop.html">Bestsellers</a>
+      <a href="shop.html">New arrivals</a>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <a href="login.html">My account</a>
+      <a href="cart.html">Cart</a>
+      <a href="index.html#story">Shipping &amp; returns</a>
+    </div>
+    <div>
+      <h5>Stay in the glow</h5>
+      <p style="margin:0 0 12px; font-size:13.5px;">Skin tips and early access to new drops, once or twice a month.</p>
+      <div class="footer-newsletter">
+        <input type="email" placeholder="you@email.com">
+        <button type="button">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Golden Glow. Student project mockup.</span>
+    <span>Facebook · Instagram · Email</span>
+  </div>
+</footer>
+
+</body>
+</html>

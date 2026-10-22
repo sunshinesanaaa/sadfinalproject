@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Golden Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body { background: #F4F1E9; }
+
+  .admin-shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+  .sidebar {
+    background: var(--navy-deep); color: rgba(251,247,241,0.8);
+    padding: 26px 20px; display: flex; flex-direction: column;
+  }
+  .sidebar .brand { padding: 0 4px 30px; border-bottom: 1px solid rgba(251,247,241,0.1); margin-bottom: 22px; }
+  .sidebar .brand-word { color: var(--ivory); }
+  .side-nav { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .side-nav a {
+    display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: var(--radius-s);
+    color: rgba(251,247,241,0.72); text-decoration: none; font-size: 14px;
+  }
+  .side-nav a svg { flex-shrink: 0; opacity: 0.85; }
+  .side-nav a:hover { background: rgba(251,247,241,0.06); color: var(--ivory); }
+  .side-nav a.active { background: rgba(217,190,121,0.14); color: var(--gold-soft); }
+  .side-nav a.active svg { opacity: 1; }
+  .side-foot { border-top: 1px solid rgba(251,247,241,0.1); padding-top: 16px; }
+  .side-foot a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; color: rgba(251,247,241,0.6); text-decoration: none; font-size: 13.5px; }
+  .side-foot a:hover { color: var(--ivory); }
+
+  .admin-main { padding: 30px 38px 60px; }
+
+  .admin-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+  .admin-topbar h1 { font-size: 26px; }
+  .admin-who { display: flex; align-items: center; gap: 12px; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--navy-deep); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+  .admin-who .name { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+  .admin-who .role { font-size: 11.5px; color: var(--text-soft); }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 34px; }
+  .stat-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 20px 22px; }
+  .stat-card .label { font-size: 12.5px; color: var(--text-soft); margin-bottom: 10px; }
+  .stat-card .value { font-family: var(--serif); font-size: 26px; color: var(--navy); font-weight: 600; }
+  .stat-card .delta { font-size: 12px; margin-top: 8px; }
+  .stat-card .delta.up { color: #4E7D57; }
+  .stat-card .delta.down { color: #B24B3B; }
+
+  .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-m); margin-bottom: 26px; }
+  .panel-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+  .panel-head h2 { font-size: 17px; font-family: var(--sans); font-weight: 700; color: var(--navy); }
+
+  .add-form { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 12px; padding: 20px 24px; align-items: end; border-bottom: 1px solid var(--line); background: #FDFBF6; }
+  .add-form .field label { display: block; font-size: 11.5px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px; }
+  .add-form input, .add-form select { width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: var(--radius-s); font-size: 13.5px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-soft); padding: 14px 24px; border-bottom: 1px solid var(--line); }
+  td { padding: 14px 24px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  .row-product { display: flex; align-items: center; gap: 12px; }
+  .row-thumb { width: 40px; height: 40px; border-radius: 6px; background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%); display: flex; align-items: center; justify-content: center; }
+  .row-thumb svg { width: 60%; height: 60%; }
+  .row-name { font-weight: 600; color: var(--navy); font-size: 14px; }
+  .row-cat { font-size: 12px; color: var(--text-soft); }
+
+  .stock-tag { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+  .stock-tag.ok { background: #E4F0E4; color: #3E6C46; }
+  .stock-tag.low { background: #FBE9DD; color: #9C5A2A; }
+
+  .row-actions { display: flex; gap: 8px; }
+  .icon-btn { width: 30px; height: 30px; border: 1px solid var(--line); background: var(--paper); border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--navy); }
+  .icon-btn:hover { border-color: var(--gold); }
+  .icon-btn.danger:hover { border-color: #B24B3B; color: #B24B3B; }
+
+  @media (max-width: 1000px) {
+    .admin-shell { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .add-form { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <aside class="sidebar">
+    <a href="index.html" class="brand" style="display:flex;">
+      <img src="assets/gglogo.png" alt="Golden Glow" style="height:26px;">
+      <span class="brand-word" style="font-size:16px;">Golden <b>Glow</b></span>
+    </a>
+    <nav class="side-nav">
+      <a href="admin.html" class="active">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Dashboard
+      </a>
+      <a href="admin.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/></svg>
+        Products
+      </a>
+      <a href="admin.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12l3 6-9 13L3 8z"/></svg>
+        Orders
+      </a>
+      <a href="admin.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7"/><circle cx="17" cy="8" r="3"/><path d="M23 21c0-3-2-5.5-5-6.3"/></svg>
+        Customers
+      </a>
+      <a href="admin.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="side-foot">
+      <a href="login.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log out
+      </a>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <div class="admin-who">
+        <div>
+          <div class="name" style="text-align:right;">Sana Villanueva</div>
+          <div class="role" style="text-align:right;">Administrator</div>
+        </div>
+        <div class="avatar">SV</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Total sales, this month</div>
+        <div class="value">₱84,320</div>
+        <div class="delta up">↑ 12% vs last month</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Orders today</div>
+        <div class="value">18</div>
+        <div class="delta up">↑ 4 vs yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Low stock items</div>
+        <div class="value">3</div>
+        <div class="delta down">Needs restock</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">New customers</div>
+        <div class="value">27</div>
+        <div class="delta up">↑ 6% this week</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Add a product</h2>
+      </div>
+      <div class="add-form">
+        <div class="field"><label>Name</label><input type="text" placeholder="e.g. Barrier Repair Cream"></div>
+        <div class="field"><label>Category</label>
+          <select>
+            <option>Cleanser</option>
+            <option>Toner</option>
+            <option>Serum</option>
+            <option>Lotion</option>
+            <option>Cream</option>
+            <option>Bar soap</option>
+          </select>
+        </div>
+        <div class="field"><label>Price (₱)</label><input type="number" placeholder="499"></div>
+        <div class="field"><label>Stock qty</label><input type="number" placeholder="50"></div>
+        <div class="field"><label>Image URL</label><input type="text" placeholder="Optional"></div>
+        <button class="btn btn-gold" type="button">Add product</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="row-product">
+                <div class="row-thumb"><svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg></div>
+                <div><div class="row-name">Radiance Cleansing Foam</div><div class="row-cat">120ml</div></div>
+              </div>
+            </td>
+            <td>Cleanser</td>
+            <td>₱349</td>
+            <td>142</td>
+            <td><span class="stock-tag ok">In stock</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="icon-btn" type="button" aria-label="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" type="button" aria-label="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-product">
+                <div class="row-thumb"><svg viewBox="0 0 100 100"><rect class="pline" x="34" y="42" width="32" height="46" rx="6"/><rect class="pline" x="42" y="26" width="16" height="18" rx="2"/><rect class="pcap" x="46" y="14" width="8" height="14" rx="2"/><rect class="pcap" x="50" y="8" width="22" height="7" rx="3"/></svg></div>
+                <div><div class="row-name">Brightening Facial Toner</div><div class="row-cat">150ml</div></div>
+              </div>
+            </td>
+            <td>Toner</td>
+            <td>₱399</td>
+            <td>96</td>
+            <td><span class="stock-tag ok">In stock</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="icon-btn" type="button" aria-label="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" type="button" aria-label="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-product">
+                <div class="row-thumb"><svg viewBox="0 0 100 100"><rect class="pline" x="36" y="46" width="28" height="40" rx="6"/><rect class="pline" x="42" y="30" width="16" height="18"/><path class="pline" d="M50 10 L50 30"/><ellipse class="pcap" cx="50" cy="9" rx="6" ry="6"/></svg></div>
+                <div><div class="row-name">Golden Glow Repair Serum</div><div class="row-cat">30ml</div></div>
+              </div>
+            </td>
+            <td>Serum</td>
+            <td>₱899</td>
+            <td>11</td>
+            <td><span class="stock-tag low">Low stock</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="icon-btn" type="button" aria-label="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" type="button" aria-label="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-product">
+                <div class="row-thumb"><svg viewBox="0 0 100 100"><path class="pline" d="M38 20 h24 l4 10 v50 a14 14 0 0 1 -32 0 v-50 z"/><rect class="pcap" x="40" y="14" width="20" height="8" rx="2"/></svg></div>
+                <div><div class="row-name">Even-Tone Day Lotion</div><div class="row-cat">100ml</div></div>
+              </div>
+            </td>
+            <td>Lotion</td>
+            <td>₱459</td>
+            <td>58</td>
+            <td><span class="stock-tag ok">In stock</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="icon-btn" type="button" aria-label="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" type="button" aria-label="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-product">
+                <div class="row-thumb"><svg viewBox="0 0 100 100"><rect class="pline" x="20" y="40" width="60" height="30" rx="12"/></svg></div>
+                <div><div class="row-name">Gentle Exfoliating Bar</div><div class="row-cat">90g</div></div>
+              </div>
+            </td>
+            <td>Bar soap</td>
+            <td>₱279</td>
+            <td>7</td>
+            <td><span class="stock-tag low">Low stock</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="icon-btn" type="button" aria-label="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" type="button" aria-label="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
