@@ -9,129 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/style.css">
-
-    <style>
-        .checkout-page {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        .checkout-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .checkout-title h1 {
-            font-family: var(--serif);
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .checkout-title p {
-            color: var(--text-soft);
-        }
-
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-        }
-
-        .checkout-card {
-            background: white;
-            border: 1px solid var(--line);
-            border-radius: var(--radius-m);
-            padding: 28px;
-            margin-bottom: 24px;
-        }
-
-        .checkout-card h2 {
-            font-family: var(--serif);
-            margin-bottom: 22px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 7px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-
-        .form-group textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-
-        .payment-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .payment-option input {
-            width: auto;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .order-item:last-child {
-            border-bottom: none;
-        }
-
-        .order-item-name {
-            font-weight: 600;
-        }
-
-        .order-item-price {
-            white-space: nowrap;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-
-        .summary-total {
-            font-size: 20px;
-            font-weight: 700;
-            padding-top: 18px;
-            margin-top: 18px;
-            border-top: 1px solid var(--line);
-        }
-
-        @media (max-width: 800px) {
-            .checkout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 
 <body>
@@ -144,7 +23,7 @@
                 <span>Golden Glow</span>
             </a>
 
-            <nav>
+            <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="shop.html">Shop</a>
                 <a href="#">Our Story</a>
@@ -260,7 +139,7 @@
                         <span>₱2,155</span>
                     </div>
 
-                    <button class="btn btn-gold btn-block" style="margin-top: 22px;">
+                    <button class="btn btn-gold btn-block place-order-button">
                         Place Order
                     </button>
 

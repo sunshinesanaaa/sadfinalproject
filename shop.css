@@ -1,0 +1,41 @@
+.page-head { background: var(--gold-tint); padding: 40px 0 34px; }
+.crumb { font-size: 13px; color: var(--text-soft); margin-bottom: 10px; }
+.crumb a { color: var(--text-soft); text-decoration: none; }
+.crumb a:hover { color: var(--navy); }
+.page-head h1 { font-size: 34px; }
+
+.shop-layout { display: grid; grid-template-columns: minmax(190px, 240px) minmax(0, 1fr); gap: clamp(24px, 4vw, 44px); padding: 46px clamp(16px, 4vw, 32px) 30px; }
+
+.filter-group { margin-bottom: 30px; }
+.filter-group h4 { font-family: var(--sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); margin-bottom: 14px; font-weight: 700; }
+.filter-option { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--text); margin-bottom: 11px; cursor: pointer; }
+.filter-option input { accent-color: var(--gold); width: 15px; height: 15px; }
+.filter-option span.count { margin-left: auto; color: var(--text-soft); font-size: 12.5px; }
+
+.price-range { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-soft); }
+.price-range input[type="range"] { flex: 1; accent-color: var(--gold); }
+
+.shop-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.result-count { font-size: 13.5px; color: var(--text-soft); }
+.sort-select { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 8px 12px; font-size: 13.5px; color: var(--text); background: var(--paper); }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 22px); }
+
+.apply-btn { margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .shop-layout { grid-template-columns: minmax(0, 1fr); padding-top: 30px; }
+  .filter-group { display: inline-block; vertical-align: top; width: min(100%, 240px); margin-right: 20px; }
+  .apply-btn { max-width: 240px; margin-bottom: 24px; }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shop-toolbar { gap: 12px; flex-wrap: wrap; }
+}
+
+@media (max-width: 420px) {
+  .page-head { padding-block: 30px 26px; }
+  .page-head h1 { font-size: 29px; }
+  .shop-layout { padding-top: 24px; }
+  .grid-3 { gap: 12px; }
+  .shop-toolbar { align-items: flex-start; }
+  .sort-select { max-width: 100%; }
+}

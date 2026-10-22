@@ -59,7 +59,7 @@ button, input, select { font-family: var(--sans); }
 .wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 clamp(16px, 4vw, 32px);
 }
 
 /* -------------------- Top bar -------------------- */
@@ -75,10 +75,11 @@ button, input, select { font-family: var(--sans); }
 .topbar-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 32px;
+  padding: 16px clamp(16px, 4vw, 32px);
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(14px, 3vw, 36px);
+  min-width: 0;
 }
 
 .brand {
@@ -119,7 +120,8 @@ button, input, select { font-family: var(--sans); }
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: clamp(12px, 2vw, 18px);
+  flex-shrink: 0;
 }
 
 .top-search {
@@ -214,6 +216,36 @@ button, input, select { font-family: var(--sans); }
 .btn-block { width: 100%; }
 .btn-sm { padding: 9px 16px; font-size: 13px; }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.store-message {
+  padding: 12px 14px;
+  border: 1px solid #E7BDA8;
+  border-radius: var(--radius-s);
+  background: #FBE9DD;
+  color: #783E2C;
+}
+
+.empty-state {
+  padding: 30px 20px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-m);
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.empty-state p { margin-top: 0; }
+
 /* -------------------- Chips / badges -------------------- */
 
 .chip {
@@ -245,6 +277,8 @@ button, input, select { font-family: var(--sans); }
 .badge-gold { background: var(--gold-tint); color: #7A5C17; }
 .badge-blush { background: #F3E4DD; color: #8C4C34; }
 .badge-navy { background: var(--navy); color: var(--ivory); }
+
+.newsletter-copy { margin: 0 0 12px; font-size: 13.5px; }
 
 /* -------------------- Product card -------------------- */
 
@@ -303,7 +337,7 @@ button, input, select { font-family: var(--sans); }
 .footer-top {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 32px 40px;
+  padding: 56px clamp(16px, 4vw, 32px) 40px;
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
   gap: 32px;
@@ -359,7 +393,7 @@ button, input, select { font-family: var(--sans); }
 
 .footer-bottom {
   border-top: 1px solid rgba(251, 247, 241, 0.12);
-  padding: 18px 32px;
+  padding: 18px clamp(16px, 4vw, 32px);
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -401,14 +435,35 @@ button, input, select { font-family: var(--sans); }
 /* -------------------- Mobile -------------------- */
 
 @media (max-width: 900px) {
-  .nav-links { display: none; }
+  .topbar-inner { flex-wrap: wrap; row-gap: 10px; }
+  .nav-links {
+    display: flex;
+    order: 3;
+    flex: 0 0 100%;
+    gap: 22px;
+    margin: 0;
+    overflow-x: auto;
+    padding: 3px 0 2px;
+    scrollbar-width: thin;
+  }
+  .nav-links a { flex-shrink: 0; }
+  .top-search { display: none; }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
-  .wrap { padding: 0 20px; }
-  .topbar-inner { padding: 14px 20px; }
-  .top-search { display: none; }
-  .footer-top { grid-template-columns: 1fr; padding: 40px 20px; }
-  .footer-bottom { flex-direction: column; gap: 8px; padding: 16px 20px; }
+  .topbar-inner { padding-block: 12px; }
+  .brand { gap: 7px; }
+  .brand img { height: 26px; }
+  .brand-word { font-size: 16px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 13px; }
+  .footer-top { grid-template-columns: 1fr; padding: 40px clamp(16px, 5vw, 24px); gap: 26px; }
+  .footer-bottom { flex-direction: column; gap: 8px; padding: 16px clamp(16px, 5vw, 24px); }
+}
+
+@media (max-width: 360px) {
+  .topbar-inner { column-gap: 8px; }
+  .top-actions { gap: 12px; }
+  .brand-word { font-size: 15px; }
 }

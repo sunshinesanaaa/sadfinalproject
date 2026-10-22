@@ -1,0 +1,78 @@
+.crumb { font-size: 13px; color: var(--text-soft); margin: 26px 0 20px; }
+.crumb a { color: var(--text-soft); text-decoration: none; }
+.crumb a:hover { color: var(--navy); }
+
+.product-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 60px); padding-bottom: 60px; }
+
+.gallery-main {
+  background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
+  border-radius: var(--radius-m);
+  aspect-ratio: 1 / 1;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.gallery-main svg { width: 34%; height: 34%; }
+.gallery-main .gallery-badge { position: absolute; top: 16px; left: 16px; }
+.gallery-thumbs { display: flex; gap: 12px; margin-top: 14px; }
+.gallery-thumbs div {
+  width: 68px; height: 68px; border-radius: var(--radius-s);
+  background: linear-gradient(160deg, var(--gold-tint) 0%, #eee3c4 100%);
+  border: 2px solid transparent; display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.gallery-thumbs div.active { border-color: var(--gold); }
+.gallery-thumbs svg { width: 55%; height: 55%; }
+
+.p-cat { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-soft); }
+.p-title { font-size: 30px; margin: 8px 0 12px; }
+.p-rating { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--text-soft); margin-bottom: 18px; }
+.p-rating .stars { color: var(--gold); letter-spacing: 2px; }
+.p-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+.p-price { font-family: var(--serif); font-size: 28px; color: var(--navy); font-weight: 600; }
+.p-price-was { color: var(--text-soft); text-decoration: line-through; font-size: 16px; }
+.p-desc { font-size: 14.5px; line-height: 1.7; color: var(--text); margin-bottom: 26px; max-width: 48ch; }
+
+.qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.qty-stepper { display: flex; align-items: center; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; }
+.qty-stepper button { width: 38px; height: 42px; border: none; background: var(--paper); font-size: 16px; cursor: pointer; color: var(--navy); }
+.qty-stepper button:hover { background: var(--gold-tint); }
+.qty-stepper span { width: 36px; text-align: center; font-weight: 600; font-size: 14px; }
+.stock-note { font-size: 13px; color: #4E7D57; display: flex; align-items: center; gap: 6px; }
+.stock-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4E7D57; }
+
+.p-actions { display: flex; gap: 12px; margin-bottom: 30px; }
+.p-actions .btn { flex: 1; }
+
+.accordion { border-top: 1px solid var(--line); }
+.accordion-item { border-bottom: 1px solid var(--line); }
+.accordion-item summary {
+  padding: 16px 2px; cursor: pointer; font-weight: 600; font-size: 14.5px; color: var(--navy);
+  display: flex; justify-content: space-between; align-items: center; list-style: none;
+}
+.accordion-item summary::-webkit-details-marker { display: none; }
+.accordion-item summary::after { content: "+"; font-size: 18px; color: var(--gold); font-weight: 400; }
+.accordion-item[open] summary::after { content: "–"; }
+.accordion-item p { padding: 0 2px 18px; margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--text-soft); max-width: 52ch; }
+
+.related { padding: 20px clamp(16px, 4vw, 32px) 70px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+
+@media (max-width: 900px) {
+  .product-layout { grid-template-columns: 1fr; gap: 30px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .crumb { margin: 18px 0 14px; line-height: 1.6; }
+  .product-layout { gap: 24px; padding-bottom: 40px; }
+  .p-title { font-size: 26px; }
+  .p-rating { flex-wrap: wrap; }
+  .qty-row { align-items: flex-start; flex-wrap: wrap; }
+  .p-actions { flex-direction: column; }
+  .related { padding-bottom: 48px; }
+  .related .grid-4 { gap: 14px; }
+}
+
+@media (max-width: 380px) {
+  .related .grid-4 { grid-template-columns: 1fr; }
+}
