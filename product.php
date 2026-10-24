@@ -42,7 +42,7 @@ unset($_SESSION['cart_error']);
 <title><?= $product ? storeEscape((string) $product['name']) . ' — Golden Glow' : 'Product not found — Golden Glow' ?></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="product.css">
+<link rel="stylesheet" href="style.css?v=3"><link rel="stylesheet" href="product.css?v=2">
 </head>
 <body>
 <?php renderStoreHeader('shop'); ?>

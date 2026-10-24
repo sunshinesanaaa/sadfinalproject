@@ -40,6 +40,43 @@
 .stock-note { font-size: 13px; color: #4E7D57; display: flex; align-items: center; gap: 6px; }
 .stock-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4E7D57; }
 
+.product-add-form {
+  display: grid;
+  grid-template-columns: max-content 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 30px;
+}
+.product-add-form label {
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.product-add-form input[type="number"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: var(--ivory);
+  color: var(--navy);
+  font: 600 15px var(--sans);
+  text-align: center;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.product-add-form input[type="number"]:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: var(--paper);
+  box-shadow: 0 0 0 3px rgba(184, 144, 46, 0.16);
+}
+.product-add-form button {
+  min-height: 48px;
+  font-weight: 700;
+}
+
 .p-actions { display: flex; gap: 12px; margin-bottom: 30px; }
 .p-actions .btn { flex: 1; }
 
@@ -68,6 +105,8 @@
   .p-title { font-size: 26px; }
   .p-rating { flex-wrap: wrap; }
   .qty-row { align-items: flex-start; flex-wrap: wrap; }
+  .product-add-form { grid-template-columns: max-content minmax(72px, 96px); }
+  .product-add-form button { grid-column: 1 / -1; }
   .p-actions { flex-direction: column; }
   .related { padding-bottom: 48px; }
   .related .grid-4 { gap: 14px; }

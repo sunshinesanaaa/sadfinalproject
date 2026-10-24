@@ -64,7 +64,13 @@ function renderProductCard(array $product): void
     $price = storeEscape(peso((float) $product['price']));
     echo '<article class="product-card">';
     echo '<a href="product.php?id=' . $id . '" class="product-card-link">';
-    echo '<div class="product-thumb"><svg viewBox="0 0 100 100" aria-hidden="true">' . productArt($id) . '</svg></div>';
+    echo '<div class="product-thumb">';
+    if (is_file(__DIR__ . '/assets/products/product-' . $id . '.jpg')) {
+        echo '<img src="assets/products/product-' . $id . '.jpg" alt="" loading="lazy" decoding="async">';
+    } else {
+        echo '<svg viewBox="0 0 100 100" aria-hidden="true">' . productArt($id) . '</svg>';
+    }
+    echo '</div>';
     echo '<div class="product-body"><span class="product-cat">' . $category . '</span><span class="product-name">' . $name . '</span></div>';
     echo '</a>';
     echo '<div class="product-card-buy"><span class="product-price">' . $price . '</span>';

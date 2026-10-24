@@ -15,7 +15,7 @@ $products = storeDatabase()->query(
 <title>Golden Glow — Skin that remembers its own light</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="stylesheet" href="home.css">
 </head>
 <body>
