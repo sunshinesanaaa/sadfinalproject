@@ -6,7 +6,7 @@ return (static function (): PDO {
     $port = getenv('SALEVISION_DB_PORT') ?: '3307';
     $database = getenv('SALEVISION_DB_NAME') ?: 'if0_43296541_salevision_demo_sales';
     $username = getenv('SALEVISION_DB_USER') ?: 'if0_43296541';
-    $password = getenv('SALEVISION_DB_PASSWORD') ?: 'Eisendichosa77';
+    $password = getenv('SALEVISION_DB_PASSWORD') ?: 'Eisendichosa717';
 
     if ($password === false) {
         $password = '';
