@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 return (static function (): PDO {
     $host = getenv('SALEVISION_DB_HOST') ?: '127.0.0.1';
-    $port = getenv('SALEVISION_DB_PORT') ?: '3306';
+    $port = getenv('SALEVISION_DB_PORT') ?: '3307';
     $database = getenv('SALEVISION_DB_NAME') ?: 'salevision';
     $username = getenv('SALEVISION_DB_USER') ?: 'root';
     $password = getenv('SALEVISION_DB_PASSWORD') ?: '';
