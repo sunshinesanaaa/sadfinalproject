@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 return (static function (): PDO {
-    $host = getenv('SALEVISION_DB_HOST') ?: 'sql303.infinityfree.com';
-    $port = getenv('SALEVISION_DB_PORT') ?: '3307';
-    $database = getenv('SALEVISION_DB_NAME') ?: 'if0_43296541_salevision_demo_sales';
-    $username = getenv('SALEVISION_DB_USER') ?: 'if0_43296541';
-    $password = getenv('SALEVISION_DB_PASSWORD') ?: 'Eisendichosa717';
+    $host = getenv('SALEVISION_DB_HOST') ?: '127.0.0.1';
+    $port = getenv('SALEVISION_DB_PORT') ?: '3306';
+    $database = getenv('SALEVISION_DB_NAME') ?: 'salevision';
+    $username = getenv('SALEVISION_DB_USER') ?: 'root';
+    $password = getenv('SALEVISION_DB_PASSWORD') ?: '';
 
     if ($password === false) {
         $password = '';
